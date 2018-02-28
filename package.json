@@ -1,0 +1,24 @@
+{
+  "name": "home15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app/server.js",
+    "start": "node app/server.js"
+  },
+  "engines": {
+    "node": "8.7.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "lodash": "^4.15.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.10.8",
+    "node-geocoder": "^3.22.0",
+    "validator": "^9.4.1"
+  }
+}
