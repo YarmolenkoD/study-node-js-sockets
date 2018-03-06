@@ -1,5 +1,5 @@
-const messageRoutes = require('./messageSocket')
+const messageSocket = require('./messageSocket')
 
 module.exports = function(socket) {
-  messageRoutes(socket)
+  messageSocket(socket)
 }
