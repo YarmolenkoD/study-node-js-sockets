@@ -26,34 +26,7 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 6
-  },
-  tokens: [{
-    access: {
-      type: String,
-      required: true
-    },
-    token: {
-      type: String,
-      required: true
-    }
-  }],
-  friends: [{
-    id: {
-      type: String,
-      required: true
-    },
-    message: [{
-      text: {
-        type: String,
-        required: true
-      },
-      id: {
-        type: Number,
-        required: true
-      },
-
-    }]
-  }]
+  }
 })
 
 let User = mongoose.model('User', UserSchema)
