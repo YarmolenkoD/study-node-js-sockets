@@ -1,5 +1,5 @@
+const {SHA256} = require('crypto-js')
 const {User} = require('../models/user')
-const {ObjectID} = require('mongodb')
 
 module.exports = function (app, mongoose) {
   app.get('/user/:id', (req, res) => {
@@ -27,34 +27,18 @@ module.exports = function (app, mongoose) {
   })
 
   app.post('/user', (req, res) => {
+    let hashPassword = SHA256(req.body.password).toString()
     let newUser = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      password: req.body.password,
+      name: req.body.name,
+      password: hashPassword,
       email: req.body.email
     })
-    newUser.save().then((user) => {
-      res.send(user)
-    }, (e) => {
+    newUser.save().then(() => {
+      return newUser.generateAuthToken()
+    }).then((token) => {
+      res.header('x-auth', token).send(newUser)
+    }).catch((e) => {
       res.status(400).send(e)
     })
-  })
-
-  app.put('/user/friend', (req, res) => {
-    let newFriend = {
-      id: ObjectID(req.body.friendId),
-      message: []
-    }
-    User.findByIdAndUpdate(mongoose.Types.ObjectId(req.body.userId), {'$push': {'friends': newFriend}}, {new: true})
-      .then((user) => {
-        if (!user) {
-          return res.status(404).send()
-        }
-        console.log(user)
-        res.send({user})
-      })
-      .catch((e) => {
-        res.status(400).send(e)
-      })
   })
 }
