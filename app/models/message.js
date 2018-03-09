@@ -11,7 +11,7 @@ let MessageSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  date: {
+  createAt: {
     type: String,
     required: true
   }

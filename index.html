@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<input type="text" id="input">
+<button id="btn">Send</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script>
+  var socket = window.io('https://polar-stream-90495.herokuapp.com');
+  socket.on('connect', function () {
+  });
+  socket.on('event', function (data) {
+  });
+  socket.on('disconnect', function () {
+  });
+  var input = document.getElementById('input')
+  var btn = document.getElementById('btn')
+  btn.onclick = function () {
+    console.log(1111, input.value)
+    var message = {
+      user: 'Danya Yarmolenko',
+      createAt: new Date(),
+      text: input.value
+    }
+    socket.emit('message', message)
+  }
+</script>
+</body>
+</html>
