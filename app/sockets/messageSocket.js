@@ -17,6 +17,4 @@ module.exports = function (websocket) {
       socket.broadcast.emit('message', message)
     })
   })
-
-
 }

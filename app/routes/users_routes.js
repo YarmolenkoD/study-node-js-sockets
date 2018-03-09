@@ -41,4 +41,25 @@ module.exports = function (app, mongoose) {
       res.status(400).send(e)
     })
   })
+
+  app.post('/user/login', (req, res) => {
+    User.findOne({email: req.body.email}).then((user) => {
+      if (!user) {
+        return res.status(404).send()
+      }
+      console.log(1111111111)
+      if (user.password === req.body.password) {
+        let resUser = {
+          name: user.name,
+          id: user._id,
+          email: user.email
+        }
+        res.send(resUser)
+      } else {
+        res.status(403).send()
+      }
+    }).catch((e) => {
+      res.status(400).send(e)
+    })
+  })
 }
