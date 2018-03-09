@@ -11,7 +11,7 @@ const app = express()
 // app.use(bodyParser.json())
 const server = http.Server(app)
 const websocket = socketio(server)
-const port = process.env.PORT || process.env.port || 3000
+const port = process.env.PORT || process.env.port || 8000
 
 
 routes(app, mongoose)
