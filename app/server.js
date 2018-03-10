@@ -19,21 +19,9 @@ const transformFacebookProfile = (profile) => ({
   avatar: profile.picture.data.url
 })
 
-// Transform Google profile into user object
-const transformGoogleProfile = (profile) => ({
-  name: profile.displayName,
-  avatar: profile.image.url
-})
-
 // Register Facebook Passport strategy
 passport.use(new FacebookStrategy(facebook, async (accessToken, refreshToken, profile, done) => {
     done(null, transformFacebookProfile(profile._json))
-  }
-))
-
-// Register Google Passport strategy
-passport.use(new GoogleStrategy(google, async (accessToken, refreshToken, profile, done) => {
-    done(null, transformGoogleProfile(profile._json))
   }
 ))
 
