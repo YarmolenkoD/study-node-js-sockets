@@ -10,7 +10,10 @@ const { mongoose } = require('./db/mongoose')
 const app = express()
 app.use(bodyParser.json())
 const server = http.Server(app)
-const websocket = socketio(server)
+const websocket = socketio(server, {
+  pingTimeout: 30000,
+  pingInterval: 30000
+})
 const port = process.env.PORT || process.env.port || 8000
 
 
