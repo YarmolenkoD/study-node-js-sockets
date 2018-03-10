@@ -22,10 +22,13 @@
   });
   var input = document.getElementById('input')
   var btn = document.getElementById('btn')
+  socket.on('message', (msg) => {
+    console.log(msg)
+  })
   btn.onclick = function () {
     console.log(1111, input.value)
     var message = {
-      user: 'Danya Yarmolenko',
+      user: 'Danya Yarmoleыфафыаnko',
       createAt: new Date(),
       text: input.value
     }
