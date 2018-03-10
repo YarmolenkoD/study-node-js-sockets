@@ -12,9 +12,11 @@ module.exports = function (websocket) {
         user: message.user,
         createAt: message.createAt
       })
-      newMessage.save()
+      newMessage.save().then(() => {
+        socket.broadcast.emit('message', message)
+      })
       // The `broadcast` allows us to send to all users but the sender.
-      socket.broadcast.emit('message', message)
+
     })
   })
 }
