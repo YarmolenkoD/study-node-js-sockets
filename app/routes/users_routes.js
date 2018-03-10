@@ -47,7 +47,7 @@ module.exports = function (app, mongoose) {
       if (!user) {
         return res.status(404).send()
       }
-      if (user.password === SHA256(req.body.password).toString(req.body.password)) {
+      if (user.password === SHA256(req.body.password).toString()) {
         let resUser = {
           name: user.name,
           id: user._id,
